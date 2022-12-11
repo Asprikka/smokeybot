@@ -64,15 +64,9 @@ async def buy_fsm(message: types.Message, state: FSMContext):
 async def forward_order(message: types.Message):
     await bot.send_message(
         chat_id=res.ADMIN_ID,
-        parse_mode=ParseMode.MARKDOWN,
-        text=f'''Час: {message.date.strftime('%H:%M:%S - %d/%m')}
-
-Текст:
-{message.text}'''
+        parse_mode=ParseMode.HTML,
+        text=tools.build_forward_text(message)
     )
-# Від кого: [{message.from_user.first_name}{message.from_user.last_name}](tg://user?id={message.from_user.id})
-# @{message.from_user.username}
-
 
 
 @dp.message_handler(IsAdmin(), commands=['upd'])
@@ -93,4 +87,3 @@ async def upd_admin_fsm(message: types.Message, state: FSMContext):
 
 if __name__ == '__main__':
     dp.filters_factory.bind(IsAdmin)
-    executor.start_polling(dp, skip_updates=True)

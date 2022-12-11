@@ -66,3 +66,18 @@ def load_vapes_list(path: str) -> List[Vape]:
         )
 
     return vapes_list
+
+
+def build_forward_text(message: types.Message):
+    result = f'''
+
+Час: {message.date.strftime('%H:%M:%S - %d/%m')}
+
+<b>{message.text}</b>'''
+
+    if message.from_user.username in ['', None]:
+        result = f'<b><a href="tg://user?id={message.chat.id}">({message.from_user.first_name} {message.from_user.last_name})</a></b>' + result
+    else:
+        result = f'<b>@{message.from_user.username}</b>' + result
+
+    return result
