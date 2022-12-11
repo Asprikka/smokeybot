@@ -71,7 +71,7 @@ def load_vapes_list(path: str) -> List[Vape]:
 def build_forward_text(message: types.Message):
     result = f'''
 
-Час: {message.date.strftime('%H:%M:%S - %d/%m')}
+Час: {message.date.strftime('%H:%M:%S - %d.%m')}
 
 <b>{message.text}</b>'''
 

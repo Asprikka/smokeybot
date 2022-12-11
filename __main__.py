@@ -62,11 +62,12 @@ async def buy_fsm(message: types.Message, state: FSMContext):
 
 
 async def forward_order(message: types.Message):
-    await bot.send_message(
-        chat_id=res.ADMIN_ID,
-        parse_mode=ParseMode.HTML,
-        text=tools.build_forward_text(message)
-    )
+    for admin_id in res.ADMIN_IDS:
+        await bot.send_message(
+            chat_id=admin_id,
+            parse_mode=ParseMode.HTML,
+            text=tools.build_forward_text(message)
+        )
 
 
 @dp.message_handler(IsAdmin(), commands=['upd'])
