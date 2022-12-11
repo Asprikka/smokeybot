@@ -87,3 +87,4 @@ async def upd_admin_fsm(message: types.Message, state: FSMContext):
 
 if __name__ == '__main__':
     dp.filters_factory.bind(IsAdmin)
+    executor.start_polling(dp, skip_updates=True)
