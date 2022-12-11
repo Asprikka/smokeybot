@@ -7,15 +7,14 @@ from aiogram.utils.markdown import bold
 
 import res
 import tools
+from config import Config
 from filters import IsAdmin
 from fsm import Form
 
 
-API_TOKEN = '5757436992:AAHM3_B9OxEwq7pLk7Tpmpxd8w0pw_dTkzU'
-
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=API_TOKEN)
+bot = Bot(token=Config.API_KEY)
 
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
